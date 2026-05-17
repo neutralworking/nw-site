@@ -49,4 +49,21 @@ const services = defineCollection({
   }),
 });
 
-export const collections = { services };
+const cases = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/cases' }),
+  schema: z.object({
+    title: z.string(),
+    headline: z.string(),
+    summary: z.string(),
+    order: z.number(),
+    context: z.string(),
+    problem: z.string(),
+    what_i_did: z.array(z.string()),
+    outcome: z.array(z.string()),
+    tools: z.array(z.string()),
+    tags: z.array(z.string()),
+    related_services: z.array(z.string()),
+  }),
+});
+
+export const collections = { services, cases };
