@@ -1,12 +1,70 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Contact">
-  <section class="container-narrow pt-20 pb-24">
-    <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Get in touch</h1>
-    <p class="mt-4 text-base text-ink-muted max-w-md">
-      Book a free 30-minute discovery call. No pitch deck, no proposal until we've talked.
+
+<BaseLayout title="Book a discovery call — Neutral Working" description="30 minutes. No slides, no pitch. Book a discovery call with Luke Warrington.">
+
+  <section class="container-narrow pt-16 pb-24">
+    <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Book a discovery call</h1>
+    <p class="mt-4 text-base text-ink-muted max-w-md leading-relaxed">
+      30 minutes. No slides, no pitch. You describe what's going on, I tell you what I'd do about
+      it. If we're a fit, we book the work. If not, you leave with a clearer view of the problem
+      either way.
     </p>
-    <p class="mt-8 text-sm text-ink-muted">Booking link coming soon.</p>
+
+    <div class="mt-10">
+      <button
+        data-cal-link="luke/discovery"
+        data-cal-namespace="discovery"
+        data-cal-config='{"layout":"month_view"}'
+        class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-accent rounded shadow-sm hover:bg-accent-dark transition-colors cursor-pointer"
+      >
+        Book a discovery call
+      </button>
+    </div>
+
+    <p class="mt-8 text-sm text-ink-muted">
+      Or email <a href="mailto:hello@neutralworking.com" class="text-ink hover:text-accent transition-colors">hello@neutralworking.com</a>
+    </p>
   </section>
+
 </BaseLayout>
+
+<!-- Cal.com popup embed — URL updated in D6 once cal.neutralworking.com is deployed -->
+<script type="text/javascript">
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, [L, namespace, ar[2]]);
+        } else {
+          p(cal, ar);
+        }
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://cal.neutralworking.com/embed/embed.js", "init");
+
+  Cal("init", "discovery", { origin: "https://cal.neutralworking.com" });
+  Cal.ns.discovery("ui", {
+    theme: "light",
+    styles: { branding: { brandColor: "#1d4ed8" } },
+    hideEventTypeDetails: false,
+  });
+</script>

@@ -2,10 +2,103 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 ---
-<BaseLayout title="About">
-  <section class="container-narrow pt-20 pb-24">
+
+<BaseLayout title="About — Neutral Working" description="Luke Warrington. Product, QA, and delivery from Czechia.">
+
+  <!-- Header -->
+  <section class="container-narrow pt-16 pb-10">
     <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">About</h1>
-    <p class="mt-4 text-base text-ink-muted">Full about page coming soon.</p>
-    <div class="mt-8"><CTA label="Book a discovery call" href="/contact" /></div>
   </section>
+
+  <!-- Lead -->
+  <section class="border-t border-border bg-surface">
+    <div class="container-narrow py-10 space-y-5">
+      <p class="text-base text-ink leading-relaxed">
+        I'm Luke. I run Neutral Working from Czechia.
+      </p>
+      <p class="text-base text-ink leading-relaxed">
+        I've worked in QA, development, and product for the last decade — currently agency-side,
+        building features for iGaming brands, where the work ranges from leaderboard rollouts across
+        six casinos to CRM platform migrations to "the launch is in two weeks and nothing works."
+        Most fractional POs come from one of those three backgrounds. I come from all of them, which
+        is why my engagements tend to leave behind systems rather than slide decks.
+      </p>
+      <p class="text-base text-ink leading-relaxed">
+        I also build my own products under the Neutral Working brand. A football management roguelike
+        (Kickoff Clash). A scouting platform for football clubs (Chief Scout). An e-commerce site
+        (Crumble.cz). They're at different stages and they teach me different things — mostly that
+        being on the receiving end of a vague brief is character-building.
+      </p>
+      <p class="text-base text-ink leading-relaxed">
+        The brand is called Neutral Working because it's an anagram of my name, and because the work
+        I do is mostly about removing drama from product delivery. Most teams don't need more
+        excitement. They need fewer surprises.
+      </p>
+    </div>
+  </section>
+
+  <!-- How I work -->
+  <section class="border-t border-border">
+    <div class="container-narrow py-10">
+      <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-6">How I work</h2>
+      <ul class="space-y-4">
+        <li class="text-base text-ink leading-relaxed">
+          <span class="font-medium">Plain English over jargon.</span>{' '}
+          If I can't explain a decision to a non-technical founder, the decision isn't ready.
+        </li>
+        <li class="text-base text-ink leading-relaxed">
+          <span class="font-medium">Ship over strategise.</span>{' '}
+          Strategy is the work you do to figure out what to ship. The point is still to ship.
+        </li>
+        <li class="text-base text-ink leading-relaxed">
+          <span class="font-medium">Cut before adding.</span>{' '}
+          Most products are 30% too big.
+        </li>
+        <li class="text-base text-ink leading-relaxed">
+          <span class="font-medium">Systems over heroics.</span>{' '}
+          If the work only happens because someone is grinding through it, the system is broken.
+        </li>
+        <li class="text-base text-ink leading-relaxed">
+          <span class="font-medium">Honest scope.</span>{' '}
+          I'll tell you what I think will and won't work before you've signed anything.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- What I'm not -->
+  <section class="border-t border-border bg-surface">
+    <div class="container-narrow py-10">
+      <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-6">What I'm not</h2>
+      <p class="text-base text-ink leading-relaxed">
+        I'm not a designer, although I work with good ones. I'm not a full-stack engineer, although
+        I can read your codebase. I'm not a marketing consultant, although I'll tell you when your
+        product positioning is hurting your delivery. I'm not a coach — I do the work.
+      </p>
+    </div>
+  </section>
+
+  <!-- Where I work -->
+  <section class="border-t border-border">
+    <div class="container-narrow py-10">
+      <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-4">Where I work</h2>
+      <p class="text-base text-ink leading-relaxed">
+        Remote, primarily with teams in the UK, EU, and US East Coast time zones. I'm in Czechia
+        (UTC+1/+2). I work in English and can run client-facing work in French if needed.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-border bg-surface">
+    <div class="container-narrow py-16 text-center">
+      <h2 class="text-xl font-semibold text-ink mb-3">Ready to talk?</h2>
+      <p class="text-base text-ink-muted mb-8 max-w-md mx-auto">
+        30 minutes. No slides, no pitch. You describe what's going on, I tell you what I'd do about
+        it. If we're a fit, we book the work.
+      </p>
+      <CTA label="Book a discovery call" href="/contact" />
+    </div>
+  </section>
+
 </BaseLayout>
