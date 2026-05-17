@@ -1,39 +1,194 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import CaseStudy from '../components/CaseStudy.astro';
 import CTA from '../components/CTA.astro';
 
 const services = [
-  { name: 'Backlog Rescue',          description: "Two weeks. Fixed price. A backlog you'll actually use.",               price: '£1,800',    href: '/services/backlog-rescue' },
-  { name: 'AI Operations Setup',     description: 'The three workflows that turn chaos into a weekly brief.',             price: '£3,500',    href: '/services/ai-operations-setup' },
-  { name: 'Automation Build',        description: 'Workflow automations built, tested, and handed over.',                 price: '£1,200',    href: '/services/automation-build' },
-  { name: 'Product Clarity Sprint',  description: 'From idea to plan, in two weeks.',                                    price: '£3,200',    href: '/services/product-clarity-sprint' },
-  { name: 'Launch Readiness Sprint', description: 'From nearly ready to launched.',                                      price: '£2,800',    href: '/services/launch-readiness-sprint' },
-  { name: 'Fractional PO Retainer',  description: 'Ongoing product ownership without a full-time hire.',                 price: '£2,400/mo', href: '/services/fractional-po-retainer' },
+  {
+    name: 'Backlog Rescue',
+    description: 'Two weeks. Fixed price. A backlog you\'ll actually use.',
+    price: '£1,800',
+    href: '/services/backlog-rescue',
+  },
+  {
+    name: 'AI Operations Setup',
+    description: 'The three workflows that turn incoming chaos into a weekly brief.',
+    price: '£3,500',
+    href: '/services/ai-operations-setup',
+  },
+  {
+    name: 'Automation Build',
+    description: 'Workflow automations built, tested, and handed over.',
+    price: '£1,200 per workflow',
+    href: '/services/automation-build',
+  },
+  {
+    name: 'Product Clarity Sprint',
+    description: 'From idea to plan, in two weeks.',
+    price: '£3,200',
+    href: '/services/product-clarity-sprint',
+  },
+  {
+    name: 'Launch Readiness Sprint',
+    description: 'From nearly ready to launched.',
+    price: '£2,800',
+    href: '/services/launch-readiness-sprint',
+  },
+  {
+    name: 'Fractional PO Retainer',
+    description: 'Ongoing product ownership without a full-time hire.',
+    price: '£2,400 / month',
+    href: '/services/fractional-po-retainer',
+  },
+];
+
+const work = [
+  {
+    title: 'Leaderboard rollout, six casino brands',
+    summary: 'Acceptance criteria, QA test plans, and multi-brand release coordination for a gamification feature launch. Shipped on schedule across all six brands.',
+    tags: ['Product', 'QA', 'Delivery'],
+    href: '/work/leaderboards',
+  },
+  {
+    title: 'Gamification platform migration',
+    summary: 'Migration brief and rollout plan for moving a casino brand from a legacy gamification platform. Risks surfaced before build, not after.',
+    tags: ['Product', 'Migration'],
+    href: '/work/smartico-migration',
+  },
+  {
+    title: 'CRM event routing architecture',
+    summary: 'End-to-end architecture for routing CRM events to brand-specific SQL databases, with a zero-downtime hard-switch plan.',
+    tags: ['Architecture', 'Integration'],
+    href: '/work/event-hub-integration',
+  },
+];
+
+const doors = [
+  {
+    label: 'Done with you',
+    description: 'You have the team. You need clarity, prioritisation, and a plan that survives contact with reality.',
+    services: ['Product Clarity Sprint', 'AI Operations Setup'],
+  },
+  {
+    label: 'Done for you',
+    description: 'You have the work. You need someone to own the backlog, write the tickets, run the delivery, and build the automations.',
+    services: ['Backlog Rescue', 'Automation Build', 'Fractional PO Retainer'],
+  },
+  {
+    label: 'Done in crisis',
+    description: 'You have a launch in three weeks and it\'s not going to make it. Or a backlog nobody understands. Or a project that has quietly stopped moving.',
+    services: ['Launch Readiness Sprint'],
+  },
 ];
 ---
 
-<BaseLayout title="Fractional PO">
+<BaseLayout title="Fractional PO" description="Operational maturity without enterprise bureaucracy. Neutral Working helps founder-led teams see clearly, decide faster, ship better, and automate the coordination work that slows them down.">
+
   <!-- Hero -->
-  <section class="container-default pt-24 pb-16">
-    <h1 class="text-3xl font-semibold tracking-tight text-ink max-w-2xl">
+  <section class="container-default pt-20 pb-16 sm:pt-28 sm:pb-20">
+    <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink max-w-2xl leading-snug">
       Operational maturity without enterprise bureaucracy.
     </h1>
-    <p class="mt-4 text-lg text-ink-muted max-w-xl">
+    <p class="mt-5 text-lg text-ink-muted max-w-xl leading-relaxed">
       Neutral Working helps founder-led teams see clearly, decide faster, ship better,
       and automate the coordination work that slows them down.
     </p>
-    <div class="mt-8 flex gap-3">
-      <CTA label="See services" href="/services" />
-      <CTA label="Book a call" href="/contact" variant="secondary" />
+    <div class="mt-8 flex flex-wrap gap-3">
+      <CTA label="Book a call" href="/contact" />
+      <CTA label="See services" href="/services" variant="secondary" />
+    </div>
+  </section>
+
+  <!-- How I work -->
+  <section class="border-t border-border">
+    <div class="container-default py-16">
+      <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-10">
+        How I work
+      </h2>
+      <p class="text-base text-ink-muted mb-10 max-w-lg">
+        Three ways to bring me in, depending on where you are.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        {doors.map(door => (
+          <div>
+            <p class="text-sm font-semibold text-ink">{door.label}</p>
+            <p class="mt-2 text-sm text-ink-muted leading-relaxed">{door.description}</p>
+            <ul class="mt-4 space-y-1">
+              {door.services.map(s => (
+                <li class="text-xs text-ink-muted">→ {s}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- Services -->
-  <section class="container-default pb-24">
-    <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-6">Services</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {services.map(s => <ServiceCard {...s} />)}
+  <section class="border-t border-border bg-surface">
+    <div class="container-default py-16">
+      <div class="flex items-baseline justify-between mb-8">
+        <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider">Services</h2>
+        <a href="/services" class="text-sm text-accent hover:text-accent-dark transition-colors">
+          See all →
+        </a>
+      </div>
+      <p class="text-sm text-ink-muted mb-8 max-w-lg">
+        Five core offers. Each one is fixed scope, fixed price, and time-boxed — except the retainer.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {services.map(s => <ServiceCard {...s} />)}
+      </div>
     </div>
   </section>
+
+  <!-- Recent work -->
+  <section class="border-t border-border">
+    <div class="container-default py-16">
+      <div class="flex items-baseline justify-between mb-8">
+        <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider">Recent work</h2>
+        <a href="/work" class="text-sm text-accent hover:text-accent-dark transition-colors">
+          More case studies →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {work.map(w => <CaseStudy {...w} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- About teaser -->
+  <section class="border-t border-border bg-surface">
+    <div class="container-default py-16">
+      <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-8">About</h2>
+      <div class="max-w-xl space-y-4">
+        <p class="text-base text-ink leading-relaxed">
+          I'm Luke. I spent years in QA and development before moving into product ownership.
+          I run Neutral Working from Czechia and work with clients across the UK, EU, and
+          remote-friendly teams elsewhere.
+        </p>
+        <p class="text-base text-ink-muted leading-relaxed">
+          I'm also building my own products — a football management roguelike, a scouting
+          platform, and an e-commerce site — which means I know what it's like to be on the
+          other side of the brief.
+        </p>
+        <a href="/about" class="inline-block text-sm text-accent hover:text-accent-dark transition-colors mt-2">
+          More about me →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="border-t border-border">
+    <div class="container-narrow py-20 text-center">
+      <h2 class="text-xl font-semibold text-ink mb-3">Ready to start?</h2>
+      <p class="text-base text-ink-muted mb-8">
+        Book a free 30-minute discovery call. No pitch deck, no proposal until we've talked.
+      </p>
+      <CTA label="Book a discovery call" href="/contact" />
+    </div>
+  </section>
+
 </BaseLayout>

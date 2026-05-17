@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTA from '../../components/CTA.astro';
+
+const services = [
+  { name: 'Backlog Rescue',          description: "Two weeks. Fixed price. A backlog you'll actually use.",             price: '£1,800',           href: '/services/backlog-rescue' },
+  { name: 'AI Operations Setup',     description: 'The three workflows that turn incoming chaos into a weekly brief.',  price: '£3,500',           href: '/services/ai-operations-setup' },
+  { name: 'Automation Build',        description: 'Workflow automations built, tested, and handed over.',              price: '£1,200 per workflow', href: '/services/automation-build' },
+  { name: 'Product Clarity Sprint',  description: 'From idea to plan, in two weeks.',                                  price: '£3,200',           href: '/services/product-clarity-sprint' },
+  { name: 'Launch Readiness Sprint', description: 'From nearly ready to launched.',                                    price: '£2,800',           href: '/services/launch-readiness-sprint' },
+  { name: 'Fractional PO Retainer',  description: 'Ongoing product ownership without a full-time hire.',              price: '£2,400 / month',   href: '/services/fractional-po-retainer' },
+];
+---
+
+<BaseLayout title="Services">
+  <section class="container-default pt-20 pb-16">
+    <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Services</h1>
+    <p class="mt-4 text-lg text-ink-muted max-w-xl">
+      Fixed scope, fixed price, time-boxed — except the retainer.
+    </p>
+  </section>
+  <section class="container-default pb-24">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {services.map(s => <ServiceCard {...s} />)}
+    </div>
+    <div class="mt-12 pt-8 border-t border-border">
+      <CTA label="Book a discovery call" href="/contact" />
+    </div>
+  </section>
+</BaseLayout>

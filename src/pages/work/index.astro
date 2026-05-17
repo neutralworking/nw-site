@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CaseStudy from '../../components/CaseStudy.astro';
+
+const work = [
+  { title: 'Leaderboard rollout, six casino brands', summary: 'Acceptance criteria, QA test plans, and multi-brand release coordination for a gamification feature launch. Shipped on schedule across all six brands.', tags: ['Product', 'QA', 'Delivery'], href: '/work/leaderboards' },
+  { title: 'Gamification platform migration', summary: 'Migration brief and rollout plan for moving a casino brand from a legacy gamification platform. Risks surfaced before build, not after.', tags: ['Product', 'Migration'], href: '/work/smartico-migration' },
+  { title: 'CRM event routing architecture', summary: 'End-to-end architecture for routing CRM events to brand-specific SQL databases, with a zero-downtime hard-switch plan.', tags: ['Architecture', 'Integration'], href: '/work/event-hub-integration' },
+];
+---
+<BaseLayout title="Work">
+  <section class="container-default pt-20 pb-16">
+    <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Work</h1>
+    <p class="mt-4 text-lg text-ink-muted max-w-xl">Selected case studies.</p>
+  </section>
+  <section class="container-default pb-24">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {work.map(w => <CaseStudy {...w} />)}
+    </div>
+  </section>
+</BaseLayout>
