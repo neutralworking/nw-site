@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* Colour palette — near-white bg, near-black text, one accent */
+  --color-canvas:      #f9f9f8;
+  --color-surface:     #ffffff;
+  --color-border:      #e5e4e2;
+  --color-ink:         #111110;
+  --color-ink-muted:   #6b6963;
+  --color-accent:      #1d4ed8;
+  --color-accent-dark: #1e40af;
+
+  /* Typography */
+  --font-family-sans: 'Inter', system-ui, sans-serif;
+  --font-family-mono: ui-monospace, 'Cascadia Code', monospace;
+
+  /* Restrained type scale (6 sizes) */
+  --font-size-xs:   0.75rem;
+  --font-size-sm:   0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg:   1.125rem;
+  --font-size-xl:   1.5rem;
+  --font-size-2xl:  2.25rem;
+  --font-size-3xl:  3rem;
+}
+
+@layer utilities {
+  .container-narrow  { max-width: 640px;  margin-inline: auto; padding-inline: 1.5rem; }
+  .container-default { max-width: 960px;  margin-inline: auto; padding-inline: 1.5rem; }
+  .container-wide    { max-width: 1280px; margin-inline: auto; padding-inline: 1.5rem; }
+}
+
+html {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-family-sans);
+  -webkit-font-smoothing: antialiased;
+}

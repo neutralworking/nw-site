@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CTA from '../components/CTA.astro';
+
+const services = [
+  { name: 'Backlog Rescue',          description: "Two weeks. Fixed price. A backlog you'll actually use.",               price: '£1,800',    href: '/services/backlog-rescue' },
+  { name: 'AI Operations Setup',     description: 'The three workflows that turn chaos into a weekly brief.',             price: '£3,500',    href: '/services/ai-operations-setup' },
+  { name: 'Automation Build',        description: 'Workflow automations built, tested, and handed over.',                 price: '£1,200',    href: '/services/automation-build' },
+  { name: 'Product Clarity Sprint',  description: 'From idea to plan, in two weeks.',                                    price: '£3,200',    href: '/services/product-clarity-sprint' },
+  { name: 'Launch Readiness Sprint', description: 'From nearly ready to launched.',                                      price: '£2,800',    href: '/services/launch-readiness-sprint' },
+  { name: 'Fractional PO Retainer',  description: 'Ongoing product ownership without a full-time hire.',                 price: '£2,400/mo', href: '/services/fractional-po-retainer' },
+];
+---
+
+<BaseLayout title="Fractional PO">
+  <!-- Hero -->
+  <section class="container-default pt-24 pb-16">
+    <h1 class="text-3xl font-semibold tracking-tight text-ink max-w-2xl">
+      Operational maturity without enterprise bureaucracy.
+    </h1>
+    <p class="mt-4 text-lg text-ink-muted max-w-xl">
+      Neutral Working helps founder-led teams see clearly, decide faster, ship better,
+      and automate the coordination work that slows them down.
+    </p>
+    <div class="mt-8 flex gap-3">
+      <CTA label="See services" href="/services" />
+      <CTA label="Book a call" href="/contact" variant="secondary" />
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="container-default pb-24">
+    <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-6">Services</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {services.map(s => <ServiceCard {...s} />)}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,19 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  price: string;
+  href: string;
+}
+
+const { name, description, price, href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="block p-6 bg-surface border border-border rounded hover:border-accent transition-colors group"
+>
+  <h3 class="text-base font-medium text-ink group-hover:text-accent transition-colors">{name}</h3>
+  <p class="mt-1 text-sm text-ink-muted">{description}</p>
+  <p class="mt-4 text-sm font-medium text-ink">From {price}</p>
+</a>

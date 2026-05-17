@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CaseStudy from '../components/CaseStudy.astro';
+import PriceTable from '../components/PriceTable.astro';
+import Pill from '../components/Pill.astro';
+import CTA from '../components/CTA.astro';
+
+const priceTiers = [
+  { name: 'Light',    price: '£2,400/mo', description: '~1 day per week',  note: '3-month minimum' },
+  { name: 'Standard', price: '£4,400/mo', description: '~2 days per week', note: '3-month minimum' },
+  { name: 'Heavy',    price: '£6,200/mo', description: '~3 days per week', note: '3-month minimum' },
+];
+---
+
+<BaseLayout title="Styleguide (internal)">
+  <div class="container-default py-16 space-y-16">
+    <div>
+      <p class="text-xs text-ink-muted mb-8 font-mono">INTERNAL — NOT LINKED FROM PUBLIC SITE</p>
+
+      <!-- Colours -->
+      <h2 class="text-sm font-medium uppercase tracking-wider text-ink-muted mb-4">Colours</h2>
+      <div class="flex gap-3 flex-wrap mb-12">
+        <div class="w-16 h-16 rounded bg-canvas border border-border" title="canvas"></div>
+        <div class="w-16 h-16 rounded bg-surface border border-border" title="surface"></div>
+        <div class="w-16 h-16 rounded bg-border" title="border"></div>
+        <div class="w-16 h-16 rounded bg-ink" title="ink"></div>
+        <div class="w-16 h-16 rounded bg-ink-muted" title="ink-muted"></div>
+        <div class="w-16 h-16 rounded bg-accent" title="accent"></div>
+        <div class="w-16 h-16 rounded bg-accent-dark" title="accent-dark"></div>
+      </div>
+
+      <!-- Type scale -->
+      <h2 class="text-sm font-medium uppercase tracking-wider text-ink-muted mb-4">Type scale</h2>
+      <div class="space-y-3 mb-12">
+        <p class="text-3xl font-semibold">3xl — Operational maturity</p>
+        <p class="text-2xl font-semibold">2xl — Operational maturity</p>
+        <p class="text-xl font-medium">xl — Service page headline</p>
+        <p class="text-lg text-ink-muted">lg — Hero subhead or section lead</p>
+        <p class="text-base">base — Body text at standard size</p>
+        <p class="text-sm text-ink-muted">sm — Labels, nav, meta, captions</p>
+        <p class="text-xs text-ink-muted">xs — Pills, fine print</p>
+      </div>
+
+      <!-- CTA -->
+      <h2 class="text-sm font-medium uppercase tracking-wider text-ink-muted mb-4">CTA</h2>
+      <div class="flex gap-3 mb-12">
+        <CTA label="Primary CTA" href="#" />
+        <CTA label="Secondary CTA" href="#" variant="secondary" />
+      </div>
+
+      <!-- Pills -->
+      <h2 class="text-sm font-medium uppercase tracking-wider text-ink-muted mb-4">Pill</h2>
+      <div class="flex gap-2 mb-12">
+        <Pill label="n8n" />
+        <Pill label="Product" />
+        <Pill label="iGaming" />
+        <Pill label="Automation" />
+      </div>
+
+      <!-- ServiceCard -->
+      <h2 class="text-sm font-medium uppercase tracking-wider text-ink-muted mb-4">ServiceCard</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+        <ServiceCard
+          name="Backlog Rescue"
+          description="Two weeks. Fixed price. A backlog you'll actually use."
+          price="£1,800"
+          href="#"
+        />
+        <ServiceCard
+          name="Fractional PO Retainer"
+          description="Ongoing product ownership without a full-time hire."
+          price="£2,400/mo"
+          href="#"
+        />
+      </div>
+
+      <!-- CaseStudy -->
+      <h2 class="text-sm font-medium uppercase tracking-wider text-ink-muted mb-4">CaseStudy</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+        <CaseStudy
+          title="Multi-brand leaderboard rollout"
+          summary="Rolled out a gamification leaderboard across six casino brands inside a tight launch window."
+          tags={['Product', 'iGaming', 'Delivery']}
+          href="#"
+        />
+        <CaseStudy
+          title="CRM event hub integration"
+          summary="Integrated an event streaming platform to unify player behaviour data across three CRM tools."
+          tags={['Integration', 'Architecture']}
+          href="#"
+        />
+      </div>
+
+      <!-- PriceTable -->
+      <h2 class="text-sm font-medium uppercase tracking-wider text-ink-muted mb-4">PriceTable</h2>
+      <div class="max-w-xl mb-12">
+        <PriceTable tiers={priceTiers} />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

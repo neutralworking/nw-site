@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Fractional product ownership for founder-led teams.' } = Astro.props;
+
+const nav = [
+  { label: 'Services', href: '/services' },
+  { label: 'Work',     href: '/work' },
+  { label: 'About',    href: '/about' },
+  { label: 'Contact',  href: '/contact' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>{title} — Neutral Working</title>
+  </head>
+  <body class="min-h-screen flex flex-col bg-canvas text-ink">
+    <header class="border-b border-border bg-surface">
+      <div class="container-wide flex items-center justify-between py-4">
+        <a href="/" class="text-sm font-medium tracking-tight text-ink hover:text-accent transition-colors">
+          Neutral Working
+        </a>
+        <nav class="flex items-center gap-6">
+          {nav.map(({ label, href }) => (
+            <a href={href} class="text-sm text-ink-muted hover:text-ink transition-colors">
+              {label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-border bg-surface mt-24">
+      <div class="container-wide py-10 flex items-center justify-between">
+        <p class="text-sm text-ink-muted">
+          &copy; {new Date().getFullYear()} Neutral Working
+        </p>
+        <a href="/contact" class="text-sm text-ink-muted hover:text-ink transition-colors">
+          Get in touch
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

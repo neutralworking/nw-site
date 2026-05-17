@@ -1,0 +1,27 @@
+---
+interface Tier {
+  name: string;
+  price: string;
+  description: string;
+  note?: string;
+}
+
+interface Props {
+  tiers: Tier[];
+}
+
+const { tiers } = Astro.props;
+---
+
+<div class="border border-border rounded overflow-hidden">
+  {tiers.map((tier, i) => (
+    <div class:list={['p-5 flex items-start justify-between gap-4', i > 0 && 'border-t border-border']}>
+      <div>
+        <p class="text-sm font-medium text-ink">{tier.name}</p>
+        <p class="mt-0.5 text-sm text-ink-muted">{tier.description}</p>
+        {tier.note && <p class="mt-1 text-xs text-ink-muted">{tier.note}</p>}
+      </div>
+      <p class="text-sm font-medium text-ink whitespace-nowrap">{tier.price}</p>
+    </div>
+  ))}
+</div>

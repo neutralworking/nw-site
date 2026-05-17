@@ -1,0 +1,25 @@
+---
+import Pill from './Pill.astro';
+
+interface Props {
+  title: string;
+  summary: string;
+  tags: string[];
+  href: string;
+}
+
+const { title, summary, tags, href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="block p-6 bg-surface border border-border rounded hover:border-accent transition-colors group"
+>
+  <h3 class="text-base font-medium text-ink group-hover:text-accent transition-colors">{title}</h3>
+  <p class="mt-2 text-sm text-ink-muted">{summary}</p>
+  {tags.length > 0 && (
+    <div class="mt-4 flex flex-wrap gap-2">
+      {tags.map(tag => <Pill label={tag} />)}
+    </div>
+  )}
+</a>
