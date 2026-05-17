@@ -1,0 +1,203 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import NamedProductsTable from '../../components/NamedProductsTable.astro';
+import Pill from '../../components/Pill.astro';
+import CTA from '../../components/CTA.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('services');
+  return entries.map(entry => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { data: d } = entry;
+
+const allServices = await getCollection('services');
+const others = allServices
+  .filter(s => s.id !== entry.id)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title={d.title} description={d.tagline}>
+
+  <!-- Header -->
+  <section class="container-default pt-16 pb-10">
+    <a href="/services" class="text-sm text-ink-muted hover:text-ink transition-colors">← Services</a>
+    <h1 class="mt-6 text-2xl sm:text-3xl font-semibold tracking-tight text-ink">{d.title}</h1>
+    <p class="mt-3 text-lg text-ink-muted max-w-2xl">{d.tagline}</p>
+    <div class="mt-5 flex flex-wrap gap-2">
+      <span class="text-sm font-medium text-ink">From {d.price_from}</span>
+      <span class="text-sm text-ink-muted">·</span>
+      <span class="text-sm text-ink-muted">{d.duration}</span>
+      <span class="text-sm text-ink-muted">·</span>
+      <span class="text-sm text-ink-muted">{d.scope}</span>
+    </div>
+  </section>
+
+  <!-- Callout (optional) -->
+  {d.callout && (
+    <section class="border-t border-border bg-surface">
+      <div class="container-default py-8">
+        <blockquote class="border-l-2 border-accent pl-5">
+          <p class="text-base font-medium text-ink">{d.callout.quote}</p>
+          {d.callout.sub && <p class="mt-2 text-sm text-ink-muted">{d.callout.sub}</p>}
+        </blockquote>
+      </div>
+    </section>
+  )}
+
+  <!-- Who it's for / not for -->
+  <section class="border-t border-border">
+    <div class="container-default py-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-4">Who it's for</h2>
+          <ul class="space-y-2">
+            {d.who_for.map(item => (
+              <li class="text-sm text-ink leading-relaxed flex gap-2">
+                <span class="text-accent mt-0.5 shrink-0">→</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-4">Who it's not for</h2>
+          <ul class="space-y-2">
+            {d.who_not_for.map(item => (
+              <li class="text-sm text-ink-muted leading-relaxed flex gap-2">
+                <span class="shrink-0">—</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="border-t border-border bg-surface">
+    <div class="container-default py-10">
+      <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-6">What you get</h2>
+      <ul class="space-y-4 max-w-2xl">
+        {d.what_you_get.map(item => (
+          <li class="text-sm text-ink leading-relaxed">
+            {item.label
+              ? <><span class="font-medium">{item.label}.</span>{' '}{item.description}</>
+              : item.description
+            }
+            {item.sub_items && item.sub_items.length > 0 && (
+              <ul class="mt-2 ml-4 space-y-1">
+                {item.sub_items.map(sub => (
+                  <li class="text-sm text-ink-muted flex gap-2">
+                    <span class="shrink-0">·</span>
+                    <span>{sub}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Named products (Automation Build only) -->
+  {d.named_products && (
+    <section class="border-t border-border">
+      <div class="container-default py-10">
+        <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-6">Named products</h2>
+        <NamedProductsTable products={d.named_products} note={d.named_products_note} />
+      </div>
+    </section>
+  )}
+
+  <!-- Typical outcomes -->
+  <section class="border-t border-border {d.named_products ? 'bg-surface' : ''}">
+    <div class="container-default py-10">
+      <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-6">Typical outcomes</h2>
+      <ul class="space-y-2 max-w-xl">
+        {d.outcomes.map(item => (
+          <li class="text-sm text-ink leading-relaxed flex gap-2">
+            <span class="text-accent mt-0.5 shrink-0">✓</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="border-t border-border bg-surface">
+    <div class="container-default py-10">
+      <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-6">How it works</h2>
+      <ol class="space-y-5 max-w-2xl">
+        {d.steps.map((step, i) => (
+          <li class="flex gap-4">
+            <span class="text-sm font-medium text-accent tabular-nums mt-0.5 shrink-0 w-5">{i + 1}</span>
+            <div>
+              <p class="text-sm font-medium text-ink">{step.label}</p>
+              <p class="mt-1 text-sm text-ink-muted leading-relaxed">{step.description}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="border-t border-border">
+    <div class="container-default py-10">
+      <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-6">Pricing</h2>
+      <div class="max-w-xl">
+        <PriceTable tiers={d.tiers} />
+        {d.tiers_note && <p class="mt-3 text-sm text-ink-muted">{d.tiers_note}</p>}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section class="border-t border-border bg-surface">
+    <div class="container-default py-10">
+      <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-4">Tools I work with</h2>
+      <div class="flex flex-wrap gap-2">
+        {d.tools.map(tool => <Pill label={tool} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-border">
+    <div class="container-narrow py-16 text-center">
+      <h2 class="text-xl font-semibold text-ink mb-3">{d.title} — ready to start?</h2>
+      <p class="text-base text-ink-muted mb-8 max-w-md mx-auto">
+        Book a free 30-minute discovery call. No pitch deck, no proposal until we've talked.
+      </p>
+      <CTA label={d.cta_label} href="/contact" />
+    </div>
+  </section>
+
+  <!-- Other services -->
+  {others.length > 0 && (
+    <section class="border-t border-border bg-surface">
+      <div class="container-default py-10">
+        <h2 class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-6">Other services</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {others.map(s => (
+            <ServiceCard
+              name={s.data.title}
+              description={s.data.tagline}
+              price={s.data.price_from}
+              href={`/services/${s.id}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+</BaseLayout>

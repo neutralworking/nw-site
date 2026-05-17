@@ -1,0 +1,39 @@
+---
+interface Product {
+  name: string;
+  description: string;
+  setup: string;
+  monthly: string;
+}
+
+interface Props {
+  products: Product[];
+  note?: string;
+}
+
+const { products, note } = Astro.props;
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full text-sm border border-border rounded overflow-hidden">
+    <thead>
+      <tr class="bg-border/40 text-left">
+        <th class="px-4 py-3 font-medium text-ink">Product</th>
+        <th class="px-4 py-3 font-medium text-ink">What it does</th>
+        <th class="px-4 py-3 font-medium text-ink whitespace-nowrap">Setup</th>
+        <th class="px-4 py-3 font-medium text-ink whitespace-nowrap">Monthly</th>
+      </tr>
+    </thead>
+    <tbody>
+      {products.map((p, i) => (
+        <tr class:list={['border-t border-border', i % 2 === 1 && 'bg-canvas']}>
+          <td class="px-4 py-3 font-medium text-ink align-top">{p.name}</td>
+          <td class="px-4 py-3 text-ink-muted align-top">{p.description}</td>
+          <td class="px-4 py-3 text-ink whitespace-nowrap align-top">{p.setup}</td>
+          <td class="px-4 py-3 text-ink whitespace-nowrap align-top">{p.monthly}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+{note && <p class="mt-3 text-sm text-ink-muted">{note}</p>}
