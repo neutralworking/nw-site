@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<BaseLayout title="Page not found — Neutral Working">
+  <section class="container-narrow pt-20 pb-24 text-center">
+    <p class="text-sm font-medium text-ink-muted uppercase tracking-wider mb-4">404</p>
+    <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Page not found</h1>
+    <p class="mt-4 text-base text-ink-muted max-w-sm mx-auto">
+      The page you're looking for doesn't exist or has moved.
+    </p>
+    <div class="mt-8 flex justify-center">
+      <CTA label="Go to homepage" href="/" variant="secondary" />
+    </div>
+  </section>
+</BaseLayout>
